@@ -14,11 +14,12 @@ APP_NAME = MediaPlayer
 MediaPlayer_APPLICATION_ICON = MediaPlayer.tiff
 
 # The Objective-C files to compile
-MediaPlayer_OBJC_FILES = AppDelegate.m VideoWindow.m View/VideoView.m
+MediaPlayer_OBJC_FILES = AppDelegate.m VideoWindow.m
 		
-MediaPlayer_H_FILES = AppDelegate.h VideoWindow.h View/VideoView.h
+MediaPlayer_H_FILES = AppDelegate.h VideoWindow.h
 
-MediaPlayer_RESOURCE_FILES = Resources/Application.gorm
+MediaPlayer_RESOURCE_FILES = Resources/Application.gorm Resources/MediaPlayer.tiff \
+	MediaPlayerInfo.plist
 
 
 -include GNUmakefile.preamble

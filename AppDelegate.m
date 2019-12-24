@@ -21,9 +21,36 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @implementation AppDelegate 
 
+//-GSFilePat
+
 -(void)applicationDidFinishLaunching: (NSNotification*)aNotification {
 	NSLog(@"NSApp did finish launching..");
 	[NSBundle loadNibNamed: @"Application" owner: self];
+	NSArray *args = [[NSProcessInfo processInfo] arguments];
+	NSUInteger pathArgIdx = [args indexOfObject: @"-GSFilePath"];
+	if (pathArgIdx != NSNotFound) {
+		NSString *pathArg = args[pathArgIdx + 1];
+		[videoWindow openFilePath: pathArg];
+	}
+}
+
+-(void)setVideoWindow: (VideoWindow*)aVideoWindow {
+	videoWindow = aVideoWindow;
+}
+
+-(void)openDocument: (id)sender {
+	NSLog(@"open document");
+	NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+	[openPanel runModal];
+	NSURL *selectedURL = [[openPanel URLs] firstObject];
+	[videoWindow openFilePath: [selectedURL path]];
+}
+
+-(BOOL)application: (NSApplication*)sharedApplication openFile: (NSString*)path {
+	NSLog(@"app received open app");
+	[videoWindow openFilePath: path];
+	// TODO: - Actually check if it opens.
+	return YES;
 }
 
 @end

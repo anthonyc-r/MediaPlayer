@@ -16,11 +16,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #import <Foundation/Foundation.h>
 #import <AppKit/AppKit.h>
 #import <mpv/client.h>
-#import "View/VideoView.h"
 
 @interface VideoWindow: NSWindow {
-	VideoView *videoWindow;
 	mpv_handle *mpv;
+	BOOL readingEvents;
+	SEL onMPVCloseSelector;
+	id onMPVCloseTarget;
+	id onMPVCloseArg;
+}
 
-} 
+-(void)closeMPVThenPerform: (SEL)selector onTarget: (id)target withObject: (id)object;
+-(void)openFilePath: (NSString*)filePath;
+
 @end
