@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	NSArray *args = [[NSProcessInfo processInfo] arguments];
 	NSUInteger pathArgIdx = [args indexOfObject: @"-GSFilePath"];
 	if (pathArgIdx != NSNotFound) {
-		NSString *pathArg = args[pathArgIdx + 1];
+		NSString *pathArg = [args objectAtIndex: pathArgIdx + 1];
 		[videoWindow openFilePath: pathArg];
 	}
 }

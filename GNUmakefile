@@ -28,6 +28,11 @@ MediaPlayer_RESOURCE_FILES = Resources/Application.gorm Resources/MediaPlayer.ti
 include $(GNUSTEP_MAKEFILES)/aggregate.make
 include $(GNUSTEP_MAKEFILES)/application.make
 
+UNAME_OS := $(shell uname -s)
+ifeq ($(UNAME_OS), OpenBSD)
+	ADDITIONAL_LDFLAGS += -L/usr/X11R6/lib
+endif
+
 ADDITIONAL_LDFLAGS += -lmpv
 ADDITIONAL_FLAGS += -std=gnu99
 -include GNUmakefile.postamble
